@@ -1,62 +1,12 @@
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #fff5fc;
-    margin: 0;
-    padding: 1rem;
-}
-
-.titulo {
-    text-align: center;
-    color: #d03d7f;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-}
-
-#malla-container {
-    display: flex;
-    flex-wrap: nowrap; /* No envolver líneas */
-    gap: 0.5rem;
-    overflow-x: auto; /* Para permitir scroll horizontal si no caben */
-    justify-content: flex-start;
-}
-
-.semestre {
-    background-color: #ffe3ed;
-    padding: 0.5rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 160px; /* Fijo y pequeño */
-    flex: 0 0 auto; /* No crecer ni encoger */
-    font-size: 0.8rem;
-}
-
-.semestre h3 {
-    text-align: center;
-    color: #a93164;
-    font-weight: bold;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-
 .ramo {
-    background-color: #f2d7e2;
-    margin: 0.2rem 0;
-    padding: 0.3rem;
-    border-radius: 10px;
-    transition: 0.2s;
-    cursor: pointer;
-    font-size: 0.8rem;
-    text-align: center;
-}
-
-.ramo:hover {
-    background-color: #e8bfd2;
-    transform: scale(1.02);
-}
-
-.ramo.bloqueado {
-    background-color: #eee;
-    color: #999;
-    cursor: not-allowed;
-    pointer-events: auto;
+  padding: 0.4rem 0.6rem;
+  margin-bottom: 0.4rem;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  color: #4a2e47;
+  white-space: normal; /* Permite que el texto haga salto de línea */
+  width: 160px;         /* Ancho fijo igual para todos */
+  box-sizing: border-box;
+  text-align: center;   /* Opcional, para centrar texto */
 }
