@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Malla Curricular Horizontal</title>
+<title>Malla Curricular Horizontal Completa</title>
 <style>
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -19,12 +19,13 @@
     display: flex;
     gap: 1.5rem;
     overflow-x: auto;
+    padding-bottom: 1rem;
   }
   .nivel-col {
     background: #f8e8f3;
     padding: 1rem;
     border-radius: 8px;
-    min-width: 150px;
+    min-width: 180px;
     flex-shrink: 0;
   }
   .nivel-col h2 {
@@ -41,6 +42,7 @@
     cursor: pointer;
     user-select: none;
     color: #4a2e47;
+    white-space: normal;
   }
   .ramo.FB { background-color: #f8c6d8; }
   .ramo.FD { background-color: #e3b7e7; }
@@ -69,9 +71,10 @@
 </head>
 <body>
 
-<h1>Malla Curricular Horizontal</h1>
+<h1>Malla Curricular Horizontal Completa</h1>
 
 <div id="malla-container">
+
   <div class="nivel-col" data-nivel="1">
     <h2>Nivel 1</h2>
     <div class="ramo FB" data-nombre="CALCULO I" data-prerrequisito="">CALCULO I</div>
@@ -93,7 +96,89 @@
     <div class="ramo FC" data-nombre="DEPORTE I" data-prerrequisito="">DEPORTE I</div>
   </div>
 
-  <!-- Más niveles aquí -->
+  <div class="nivel-col" data-nivel="3">
+    <h2>Nivel 3</h2>
+    <div class="ramo FB" data-nombre="CALCULO III" data-prerrequisito="CALCULO II">CALCULO III</div>
+    <div class="ramo FB" data-nombre="FISICA GENERAL" data-prerrequisito="CALCULO I">FISICA GENERAL</div>
+    <div class="ramo FD" data-nombre="PROGRAMACION PARA INGENIERIA" data-prerrequisito="SOLUCION ALGORITMICA DE PROBLEMAS">PROGRAMACION PARA INGENIERIA</div>
+    <div class="ramo FB" data-nombre="ECUACIONES DIFERENCIALES" data-prerrequisito="ALGEBRA LINEAL,CALCULO II">ECUACIONES DIFERENCIALES</div>
+    <div class="ramo FF" data-nombre="AUTOGESTION DEL APRENDIZAJE" data-prerrequisito="">AUTOGESTION DEL APRENDIZAJE</div>
+    <div class="ramo FF" data-nombre="IDIOMA EXTRANJERO III" data-prerrequisito="IDIOMA EXTRANJERO II">IDIOMA EXTRANJERO III</div>
+  </div>
+
+  <div class="nivel-col" data-nivel="4">
+    <h2>Nivel 4</h2>
+    <div class="ramo FB" data-nombre="FUNDAMENTOS DE FLUIDOS Y TERMODINAMICA" data-prerrequisito="FISICA GENERAL,CALCULO II">FUNDAMENTOS DE FLUIDOS Y TERMODINAMICA</div>
+    <div class="ramo FD" data-nombre="TALLER DE ANALISIS NUMERICO" data-prerrequisito="PROGRAMACION PARA INGENIERIA,CALCULO III">TALLER DE ANALISIS NUMERICO</div>
+    <div class="ramo FD" data-nombre="SISTEMAS DE OPERACIONES" data-prerrequisito="FUNDAMENTOS DE ADMINISTRACION,LA INGENIERIA INDUSTRIAL">SISTEMAS DE OPERACIONES</div>
+    <div class="ramo FB" data-nombre="PROBABILIDADES Y ESTADISTICA" data-prerrequisito="ALGEBRA LINEAL,CALCULO II">PROBABILIDADES Y ESTADISTICA</div>
+    <div class="ramo FF" data-nombre="TRABAJO EN EQUIPO Y DESARROLLO DE HABILIDADES SOCIALES" data-prerrequisito="AUTOGESTION DEL APRENDIZAJE">TRABAJO EN EQUIPO Y DESARROLLO DE HABILIDADES SOCIALES</div>
+    <div class="ramo FF" data-nombre="IDIOMA EXTRANJERO IV" data-prerrequisito="IDIOMA EXTRANJERO III">IDIOMA EXTRANJERO IV</div>
+    <div class="ramo FC" data-nombre="DEPORTE II" data-prerrequisito="">DEPORTE II</div>
+  </div>
+
+  <div class="nivel-col" data-nivel="5">
+    <h2>Nivel 5</h2>
+    <div class="ramo FB" data-nombre="ELECTRICIDAD Y MAGNETISMO" data-prerrequisito="FISICA GENERAL,CALCULO II">ELECTRICIDAD Y MAGNETISMO</div>
+    <div class="ramo FD" data-nombre="MODELOS DE INVESTIGACION DE OPERACIONES" data-prerrequisito="PROBABILIDADES Y ESTADISTICA,TALLER DE ANALISIS NUMERICO">MODELOS DE INVESTIGACION DE OPERACIONES</div>
+    <div class="ramo FD" data-nombre="ESTADISTICA INDUSTRIAL" data-prerrequisito="PROBABILIDADES Y ESTADISTICA">ESTADISTICA INDUSTRIAL</div>
+    <div class="ramo FD" data-nombre="GESTION DE RECURSOS HUMANOS" data-prerrequisito="FUNDAMENTOS DE ADMINISTRACION">GESTION DE RECURSOS HUMANOS</div>
+    <div class="ramo FF" data-nombre="COMPRENSION DE CONTEXTOS SOCIALES" data-prerrequisito="COMUNICACION ORAL Y ESCRITA II">COMPRENSION DE CONTEXTOS SOCIALES</div>
+    <div class="ramo FF" data-nombre="IDIOMA EXTRANJERO V" data-prerrequisito="IDIOMA EXTRANJERO IV">IDIOMA EXTRANJERO V</div>
+  </div>
+
+  <div class="nivel-col" data-nivel="6">
+    <h2>Nivel 6</h2>
+    <div class="ramo FD" data-nombre="ANALISIS ECONOMICO" data-prerrequisito="FUNDAMENTOS DE ADMINISTRACION,CALCULO II">ANALISIS ECONOMICO</div>
+    <div class="ramo FD" data-nombre="PROGRAMACION MATEMATICA" data-prerrequisito="MODELOS DE INVESTIGACION DE OPERACIONES">PROGRAMACION MATEMATICA</div>
+    <div class="ramo FD" data-nombre="MODELOS ESTOCASTICOS Y SIMULACION" data-prerrequisito="ESTADISTICA INDUSTRIAL,MODELOS DE INVESTIGACION DE OPERACIONES">MODELOS ESTOCASTICOS Y SIMULACION</div>
+    <div class="ramo FD" data-nombre="FUNDAMENTOS DE INGENIERIA DE PROCESOS" data-prerrequisito="FUNDAMENTOS DE FLUIDOS Y TERMODINAMICA,QUIMICA GENERAL Y ORGANICA">FUNDAMENTOS DE INGENIERIA DE PROCESOS</div>
+    <div class="ramo FF" data-nombre="COMPRENSION DE CONTEXTOS CULTURALES" data-prerrequisito="COMPRENSION DE CONTEXTOS SOCIALES">COMPRENSION DE CONTEXTOS CULTURALES</div>
+    <div class="ramo FF" data-nombre="IDIOMA EXTRANJERO VI" data-prerrequisito="IDIOMA EXTRANJERO V">IDIOMA EXTRANJERO VI</div>
+  </div>
+
+  <div class="nivel-col" data-nivel="7">
+    <h2>Nivel 7</h2>
+    <div class="ramo FD" data-nombre="INGENIERIA ECONOMICA Y EVALUACION DE PROYECTOS" data-prerrequisito="ANALISIS ECONOMICO,FUNDAMENTOS DE ADMINISTRACION">INGENIERIA ECONOMICA Y EVALUACION DE PROYECTOS</div>
+    <div class="ramo FD" data-nombre="MARKETING TACTICO Y OPERATIVO" data-prerrequisito="ANALISIS ECONOMICO">MARKETING TACTICO Y OPERATIVO</div>
+    <div class="ramo FD" data-nombre="DISEÑO DE SISTEMAS DE OPERACIONES" data-prerrequisito="MODELOS ESTOCASTICOS Y SIMULACION,PROGRAMACION MATEMATICA,SISTEMAS DE OPERACIONES">DISEÑO DE SISTEMAS DE OPERACIONES</div>
+    <div class="ramo FD" data-nombre="TECNOLOGIAS DE INFORMACION" data-prerrequisito="SISTEMAS DE OPERACIONES,PROGRAMACION PARA INGENIERIA">TECNOLOGIAS DE INFORMACION</div>
+    <div class="ramo FD" data-nombre="PROCESOS Y EQUIPOS INDUSTRIALES I" data-prerrequisito="FUNDAMENTOS DE INGENIERIA DE PROCESOS">PROCESOS Y EQUIPOS INDUSTRIALES I</div>
+    <div class="ramo FF" data-nombre="ETICA Y RESPONSABILIDAD SOCIAL" data-prerrequisito="COMPRENSION DE CONTEXTOS CULTURALES,TRABAJO EN EQUIPO Y DESARROLLO DE HABILIDADES SOCIALES">ETICA Y RESPONSABILIDAD SOCIAL</div>
+  </div>
+
+  <div class="nivel-col" data-nivel="8">
+    <h2>Nivel 8</h2>
+    <div class="ramo FD" data-nombre="INGENIERIA FINANCIERA" data-prerrequisito="ANALISIS ECONOMICO">INGENIERIA FINANCIERA</div>
+    <div class="ramo FD" data-nombre="GESTION DE PROYECTOS" data-prerrequisito="DISEÑO DE SISTEMAS DE OPERACIONES,INGENIERIA ECONOMICA Y EVALUACION DE PROYECTOS,GESTION DE RECURSOS HUMANOS">GESTION DE PROYECTOS</div>
+    <div class="ramo FD" data-nombre="PLANIFICACION Y GESTION DE LAS OPERACIONES" data-prerrequisito="DISEÑO DE SISTEMAS DE OPERACIONES">PLANIFICACION Y GESTION DE LAS OPERACIONES</div>
+    <div class="ramo FD" data-nombre="PROCESOS Y EQUIPOS INDUSTRIALES II" data-prerrequisito="PROCESOS Y EQUIPOS INDUSTRIALES I,ELECTRICIDAD Y MAGNETISMO">PROCESOS Y EQUIPOS INDUSTRIALES II</div>
+    <div class="ramo MI" data-nombre="PROYECTO DE LICENCIATURA" data-prerrequisito="ETICA Y RESPONSABILIDAD SOCIAL,PROCESOS Y EQUIPOS INDUSTRIALES I,TECNOLOGIAS DE INFORMACION,DISEÑO DE SISTEMAS DE OPERACIONES,MARKETING TACTICO Y OPERATIVO,INGENIERIA ECONOMICA Y EVALUACION DE PROYECTOS">PROYECTO DE LICENCIATURA</div>
+    <div class="ramo FF" data-nombre="RESPONSABILIDAD SOCIAL" data-prerrequisito="ETICA Y RESPONSABILIDAD SOCIAL">RESPONSABILIDAD SOCIAL</div>
+  </div>
+
+  <div class="nivel-col" data-nivel="9">
+    <h2>Nivel 9</h2>
+    <div class="ramo FD" data-nombre="DISEÑO DE SISTEMAS DE COSTEO" data-prerrequisito="INGENIERIA FINANCIERA">DISEÑO DE SISTEMAS DE COSTEO</div>
+    <div class="ramo MI" data-nombre="PROYECTO DE DISEÑO DE SISTEMAS DE OPERACIONES" data-prerrequisito="GESTION DE PROYECTOS,TECNOLOGIAS DE INFORMACION,DISEÑO DE SISTEMAS DE OPERACIONES,INGENIERIA ECONOMICA Y EVALUACION DE PROYECTOS">PROYECTO DE DISEÑO DE SISTEMAS DE OPERACIONES</div>
+    <div class="ramo FD" data-nombre="GESTION DE LA CADENA DE ABASTECIMIENTO" data-prerrequisito="PLANIFICACION Y GESTION DE LAS OPERACIONES">GESTION DE LA CADENA DE ABASTECIMIENTO</div>
+    <div class="ramo FD" data-nombre="GESTION DE LA INNOVACION Y EMPRENDIMIENTO" data-prerrequisito="MARKETING TACTICO Y OPERATIVO,INGENIERIA ECONOMICA Y EVALUACION DE PROYECTOS">GESTION DE LA INNOVACION Y EMPRENDIMIENTO</div>
+    <div class="ramo FD" data-nombre="GESTION AMBIENTAL Y ENERGETICA" data-prerrequisito="PROCESOS Y EQUIPOS INDUSTRIALES II">GESTION AMBIENTAL Y ENERGETICA</div>
+    <div class="ramo EE" data-nombre="ELECTIVO I" data-prerrequisito="">ELECTIVO I</div>
+  </div>
+
+  <div class="nivel-col" data-nivel="10">
+    <h2>Nivel 10</h2>
+    <div class="ramo FD" data-nombre="ESTRATEGIAS Y DIRECCION EMPRESARIAL" data-prerrequisito="GESTION DE PROYECTOS">ESTRATEGIAS Y DIRECCION EMPRESARIAL</div>
+    <div class="ramo MI" data-nombre="PROYECTO DE TITULACION" data-prerrequisito="PROYECTO DE LICENCIATURA,PROYECTO DE DISEÑO DE SISTEMAS DE OPERACIONES">PROYECTO DE TITULACION</div>
+    <div class="ramo EE" data-nombre="ELECTIVO II" data-prerrequisito="">ELECTIVO II</div>
+  </div>
+
+  <div class="nivel-col" data-nivel="99">
+    <h2>Nivel 99</h2>
+    <div class="ramo FC" data-nombre="DEPORTES" data-prerrequisito="">DEPORTES</div>
+  </div>
+
 </div>
 
 <script>
