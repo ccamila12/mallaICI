@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Malla Curricular Interactiva Simplificada</title>
+<title>Malla Curricular Interactiva con Ancho Fijo</title>
 <style>
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -35,11 +35,12 @@
     user-select: none;
     color: #4a2e47;
     white-space: normal; /* permite salto de línea */
-    width: 160px;         /* ancho fijo igual */
+    width: 180px;         /* ancho fijo igual para todos */
     box-sizing: border-box;
     text-align: center;
     vertical-align: top;
   }
+  /* Colores por tipo */
   td.ramo.FB { background-color: #f8c6d8; }
   td.ramo.FD { background-color: #e3b7e7; }
   td.ramo.FF { background-color: #d49dde; }
@@ -48,12 +49,14 @@
   td.ramo.DC { background-color: #c1b3d7; }
   td.ramo.EE { background-color: #d2addd; }
 
+  /* Estado tachado */
   td.ramo.tachado {
     text-decoration: line-through;
     background-color: rgba(208, 61, 127, 0.3) !important;
     color: #7a4a6e !important;
   }
 
+  /* Estado bloqueado */
   td.ramo.bloqueado {
     background-color: #ccc !important;
     color: #777 !important;
@@ -61,6 +64,7 @@
     user-select: none;
   }
 
+  /* Hover solo si no está bloqueado ni tachado */
   td.ramo:hover:not(.bloqueado):not(.tachado) {
     background-color: #f0d5e6;
   }
@@ -179,7 +183,6 @@
       <td class="ramo FD" data-nombre="ESTRATEGIA Y CONTROL DE GESTION" data-prerrequisito="INGENIERIA FINANCIERA">ESTRATEGIA Y CONTROL DE GESTION</td>
       <td class="ramo MI" data-nombre="PROYECTO DE DISEÑO DE SISTEMAS DE PLANIFICACION DE OPERACIONES" data-prerrequisito="PLANIFICACION Y GESTION DE LAS OPERACIONES,TECNOLOGIAS DE INFORMACION">PROYECTO DE DISEÑO DE SISTEMAS DE PLANIFICACION DE OPERACIONES</td>
       <td class="ramo MI" data-nombre="PROYECTO DE APLICACION TECNOLOGICA" data-prerrequisito="GESTION AMBIENTAL Y ENERGETICA,PROCESOS Y EQUIPOS INDUSTRIALES II,INGENIERIA ECONOMICA Y EVALUACION DE PROYECTOS">PROYECTO DE APLICACION TECNOLOGICA</td>
-      <td class="ramo FD" data-nombre="MEJORAMIENTO CONTINUO" data-prerrequisito="(8)">MEJORAMIENTO CONTINUO</td>
       <td class="ramo EE" data-nombre="ELECTIVO II" data-prerrequisito="">ELECTIVO II</td>
       <td class="ramo EE" data-nombre="ELECTIVO III" data-prerrequisito="">ELECTIVO III</td>
     </tr>
@@ -187,24 +190,18 @@
 </table>
 
 <script>
-  // Al hacer click en ramo, se tacha y cambia color; además controla desbloqueo
+  // Control de clic para tachar y desbloquear prerrequisitos
   document.querySelectorAll('td.ramo').forEach(td => {
     td.addEventListener('click', () => {
-      // Si está bloqueado no hacer nada
-      if (td.classList.contains('bloqueado')) return;
+      if (td.classList.contains('bloqueado')) return; // No se puede clicar bloqueado
 
-      // Toggle tachado
       td.classList.toggle('tachado');
-
-      // Actualizar desbloqueo
       actualizarDesbloqueo();
     });
   });
 
   function actualizarDesbloqueo() {
-    // Obtener todos los ramos
     const ramos = document.querySelectorAll('td.ramo');
-    // Crear mapa nombre => elemento
     const mapaRamos = {};
     ramos.forEach(r => {
       mapaRamos[r.dataset.nombre] = r;
@@ -213,16 +210,13 @@
     ramos.forEach(ramo => {
       const prerrequisitos = ramo.dataset.prerrequisito;
       if (!prerrequisitos) {
-        // Si no tiene prerrequisitos, desbloquear
         ramo.classList.remove('bloqueado');
       } else {
-        // Revisar si todos los prerrequisitos están tachados
         const preArr = prerrequisitos.split(',').map(x => x.trim()).filter(x => x.length > 0);
         const todosTachados = preArr.every(pr => mapaRamos[pr] && mapaRamos[pr].classList.contains('tachado'));
         if (todosTachados) {
           ramo.classList.remove('bloqueado');
         } else {
-          // Bloquear y quitar tachado si estaba marcado sin prerrequisito cumplido
           ramo.classList.add('bloqueado');
           ramo.classList.remove('tachado');
         }
@@ -230,7 +224,6 @@
     });
   }
 
-  // Inicializamos desbloqueo al cargar
   actualizarDesbloqueo();
 </script>
 
