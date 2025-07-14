@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Malla Curricular Interactiva Simplificada</title>
+<title>Malla Curricular Horizontal</title>
 <style>
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -15,171 +15,122 @@
     text-align: center;
     margin-bottom: 1.5rem;
   }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
+  #malla-container {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
   }
-  th, td {
-    padding: 0.4rem 0.8rem;
-    border: none;
+  .nivel-col {
+    background: #f8e8f3;
+    padding: 1rem;
+    border-radius: 8px;
+    min-width: 150px;
+    flex-shrink: 0;
   }
-  th {
-    text-align: left;
-    color: #d03d7f;
-    font-weight: 700;
-    font-size: 1.1rem;
-  }
-  td.nivel {
-    width: 50px;
-    text-align: left;
-    font-weight: 600;
+  .nivel-col h2 {
     color: #a0537d;
-    vertical-align: top;
-    user-select: none;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-align: center;
   }
-  td.ramo {
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: left;
-    padding-left: 0.5rem;
+  .ramo {
+    padding: 0.4rem 0.6rem;
+    margin-bottom: 0.4rem;
     border-radius: 4px;
+    cursor: pointer;
     user-select: none;
-    white-space: normal;
-    word-wrap: break-word;
+    color: #4a2e47;
   }
-  td.ramo.FB { background-color: #f8c6d8; }
-  td.ramo.FD { background-color: #e3b7e7; }
-  td.ramo.FF { background-color: #d49dde; }
-  td.ramo.FC { background-color: #d1c1d8; }
-  td.ramo.MI { background-color: #bfa5c9; }
-  td.ramo.DC { background-color: #c1b3d7; }
-  td.ramo.EE { background-color: #d2addd; }
+  .ramo.FB { background-color: #f8c6d8; }
+  .ramo.FD { background-color: #e3b7e7; }
+  .ramo.FF { background-color: #d49dde; }
+  .ramo.FC { background-color: #d1c1d8; }
+  .ramo.MI { background-color: #bfa5c9; }
+  .ramo.DC { background-color: #c1b3d7; }
+  .ramo.EE { background-color: #d2addd; }
 
-  td.ramo.tachado {
+  .ramo.tachado {
     text-decoration: line-through;
     background-color: rgba(208, 61, 127, 0.3) !important;
     color: #7a4a6e !important;
   }
 
-  td.ramo.bloqueado {
+  .ramo.bloqueado {
     background-color: #ccc !important;
     color: #777 !important;
     pointer-events: none;
-    user-select: none;
   }
 
-  td.ramo:hover:not(.bloqueado):not(.tachado) {
+  .ramo:hover:not(.bloqueado):not(.tachado) {
     background-color: #f0d5e6;
   }
 </style>
 </head>
 <body>
 
-<h1>Malla Curricular Interactiva</h1>
+<h1>Malla Curricular Horizontal</h1>
 
-<table id="malla">
-  <thead>
-    <tr>
-      <th>Nivel</th>
-      <th>Asignatura</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="nivel">1</td>
-      <td class="ramo FB" data-nombre="CALCULO I" data-prerrequisito="">CALCULO I</td>
-    </tr>
-    <tr>
-      <td class="nivel">1</td>
-      <td class="ramo FB" data-nombre="ALGEBRA" data-prerrequisito="">ALGEBRA</td>
-    </tr>
-    <tr>
-      <td class="nivel">1</td>
-      <td class="ramo FB" data-nombre="QUIMICA GENERAL Y ORGANICA" data-prerrequisito="">QUIMICA GENERAL Y ORGANICA</td>
-    </tr>
-    <tr>
-      <td class="nivel">1</td>
-      <td class="ramo FD" data-nombre="LA INGENIERIA INDUSTRIAL" data-prerrequisito="">LA INGENIERIA INDUSTRIAL</td>
-    </tr>
-    <tr>
-      <td class="nivel">1</td>
-      <td class="ramo FF" data-nombre="COMUNICACION ORAL Y ESCRITA I" data-prerrequisito="">COMUNICACION ORAL Y ESCRITA I</td>
-    </tr>
-    <tr>
-      <td class="nivel">1</td>
-      <td class="ramo FF" data-nombre="IDIOMA EXTRANJERO I" data-prerrequisito="">IDIOMA EXTRANJERO I</td>
-    </tr>
+<div id="malla-container">
+  <div class="nivel-col" data-nivel="1">
+    <h2>Nivel 1</h2>
+    <div class="ramo FB" data-nombre="CALCULO I" data-prerrequisito="">CALCULO I</div>
+    <div class="ramo FB" data-nombre="ALGEBRA" data-prerrequisito="">ALGEBRA</div>
+    <div class="ramo FB" data-nombre="QUIMICA GENERAL Y ORGANICA" data-prerrequisito="">QUIMICA GENERAL Y ORGANICA</div>
+    <div class="ramo FD" data-nombre="LA INGENIERIA INDUSTRIAL" data-prerrequisito="">LA INGENIERIA INDUSTRIAL</div>
+    <div class="ramo FF" data-nombre="COMUNICACION ORAL Y ESCRITA I" data-prerrequisito="">COMUNICACION ORAL Y ESCRITA I</div>
+    <div class="ramo FF" data-nombre="IDIOMA EXTRANJERO I" data-prerrequisito="">IDIOMA EXTRANJERO I</div>
+  </div>
 
-    <tr>
-      <td class="nivel">2</td>
-      <td class="ramo FB" data-nombre="CALCULO II" data-prerrequisito="CALCULO I">CALCULO II</td>
-    </tr>
-    <tr>
-      <td class="nivel">2</td>
-      <td class="ramo FB" data-nombre="ALGEBRA LINEAL" data-prerrequisito="ALGEBRA">ALGEBRA LINEAL</td>
-    </tr>
-    <tr>
-      <td class="nivel">2</td>
-      <td class="ramo FD" data-nombre="SOLUCION ALGORITMICA DE PROBLEMAS" data-prerrequisito="">SOLUCION ALGORITMICA DE PROBLEMAS</td>
-    </tr>
-    <tr>
-      <td class="nivel">2</td>
-      <td class="ramo FD" data-nombre="FUNDAMENTOS DE ADMINISTRACION" data-prerrequisito="LA INGENIERIA INDUSTRIAL">FUNDAMENTOS DE ADMINISTRACION</td>
-    </tr>
-    <tr>
-      <td class="nivel">2</td>
-      <td class="ramo FF" data-nombre="COMUNICACION ORAL Y ESCRITA II" data-prerrequisito="COMUNICACION ORAL Y ESCRITA I">COMUNICACION ORAL Y ESCRITA II</td>
-    </tr>
-    <tr>
-      <td class="nivel">2</td>
-      <td class="ramo FF" data-nombre="IDIOMA EXTRANJERO II" data-prerrequisito="IDIOMA EXTRANJERO I">IDIOMA EXTRANJERO II</td>
-    </tr>
-    <tr>
-      <td class="nivel">2</td>
-      <td class="ramo FC" data-nombre="DEPORTE I" data-prerrequisito="">DEPORTE I</td>
-    </tr>
+  <div class="nivel-col" data-nivel="2">
+    <h2>Nivel 2</h2>
+    <div class="ramo FB" data-nombre="CALCULO II" data-prerrequisito="CALCULO I">CALCULO II</div>
+    <div class="ramo FB" data-nombre="ALGEBRA LINEAL" data-prerrequisito="ALGEBRA">ALGEBRA LINEAL</div>
+    <div class="ramo FD" data-nombre="SOLUCION ALGORITMICA DE PROBLEMAS" data-prerrequisito="">SOLUCION ALGORITMICA DE PROBLEMAS</div>
+    <div class="ramo FD" data-nombre="FUNDAMENTOS DE ADMINISTRACION" data-prerrequisito="LA INGENIERIA INDUSTRIAL">FUNDAMENTOS DE ADMINISTRACION</div>
+    <div class="ramo FF" data-nombre="COMUNICACION ORAL Y ESCRITA II" data-prerrequisito="COMUNICACION ORAL Y ESCRITA I">COMUNICACION ORAL Y ESCRITA II</div>
+    <div class="ramo FF" data-nombre="IDIOMA EXTRANJERO II" data-prerrequisito="IDIOMA EXTRANJERO I">IDIOMA EXTRANJERO II</div>
+    <div class="ramo FC" data-nombre="DEPORTE I" data-prerrequisito="">DEPORTE I</div>
+  </div>
 
-    <!-- Agrega más filas siguiendo este patrón -->
-  </tbody>
-</table>
+  <!-- Más niveles aquí -->
+</div>
 
 <script>
-  function estaTachado(td) {
-    return td.classList.contains('tachado');
+  function estaTachado(el) {
+    return el.classList.contains('tachado');
   }
 
-  document.querySelectorAll('td.ramo').forEach(td => {
-    td.addEventListener('click', () => {
-      if (td.classList.contains('bloqueado')) return;
-
-      td.classList.toggle('tachado');
+  document.querySelectorAll('.ramo').forEach(el => {
+    el.addEventListener('click', () => {
+      if (el.classList.contains('bloqueado')) return;
+      el.classList.toggle('tachado');
       actualizarEstadoRamos();
     });
   });
 
   function actualizarEstadoRamos() {
     const aprobados = new Set();
-    document.querySelectorAll('td.ramo.tachado').forEach(td => {
-      aprobados.add(td.dataset.nombre.trim().toUpperCase());
+    document.querySelectorAll('.ramo.tachado').forEach(el => {
+      aprobados.add(el.dataset.nombre.trim().toUpperCase());
     });
 
-    document.querySelectorAll('td.ramo').forEach(td => {
-      if (estaTachado(td)) {
-        td.classList.remove('bloqueado');
+    document.querySelectorAll('.ramo').forEach(el => {
+      if (estaTachado(el)) {
+        el.classList.remove('bloqueado');
         return;
       }
-      const prereqs = td.dataset.prerrequisito;
+      const prereqs = el.dataset.prerrequisito;
       if (!prereqs || prereqs.trim() === '') {
-        td.classList.remove('bloqueado');
+        el.classList.remove('bloqueado');
       } else {
         const prereqArray = prereqs.split(',').map(x => x.trim().toUpperCase());
         const todosAprobados = prereqArray.every(p => aprobados.has(p));
         if (todosAprobados) {
-          td.classList.remove('bloqueado');
+          el.classList.remove('bloqueado');
         } else {
-          td.classList.add('bloqueado');
-          td.classList.remove('tachado');
+          el.classList.add('bloqueado');
+          el.classList.remove('tachado');
         }
       }
     });
