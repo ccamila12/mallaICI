@@ -1,104 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Malla Ingenieria Civil Industrial</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan de Estudios - Ingeniería Industrial</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f1f1f1;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f7f9fc;
+      color: #333;
+      line-height: 1.6;
+      margin: 0;
       padding: 20px;
+    }
+
+    h1 {
       text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
     }
 
-    .malla {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 15px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .ramo {
-      background-color: #ffffff;
-      border: 2px solid #0077b6;
-      border-radius: 10px;
-      padding: 15px;
-      cursor: pointer;
-      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
-    }
-
-    .ramo:hover {
-      transform: scale(1.05);
-      background-color: #caf0f8;
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 20%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: white;
+    .semestre {
+      background: #e3f2fd;
+      border-left: 8px solid #2196f3;
+      margin-bottom: 25px;
       padding: 20px;
-      border: 2px solid #0077b6;
       border-radius: 10px;
-      z-index: 1000;
-      width: 300px;
     }
 
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 999;
+    .semestre h2 {
+      color: #1565c0;
+      margin-bottom: 15px;
     }
 
-    .close-btn {
-      background-color: #0077b6;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      cursor: pointer;
+    .asignatura {
+      margin-bottom: 12px;
+    }
+
+    .nombre {
+      font-weight: bold;
+      color: #0d47a1;
+    }
+
+    .tipo {
+      font-style: italic;
+      color: #555;
+    }
+
+    .prerrequisitos {
+      color: #777;
+      font-size: 0.95em;
     }
   </style>
 </head>
 <body>
+  <h1>Plan de Estudios - Ingeniería Industrial</h1>
 
-  <h1>Malla Curricular Ingenieria Civil Industrial</h1>
-
-  <div class="malla">
-    <div class="ramo" onclick="mostrarInfo('Cálculo I', 'Créditos: 6<br>Prerrequisito: Ninguno')">Cálculo I</div>
-    <div class="ramo" onclick="mostrarInfo('Álgebra', 'Créditos: 5<br>Prerrequisito: Ninguno')">Álgebra</div>
-    <div class="ramo" onclick="mostrarInfo('Programación', 'Créditos: 5<br>Prerrequisito: Ninguno')">Programación</div>
-    <div class="ramo" onclick="mostrarInfo('Física I', 'Créditos: 6<br>Prerrequisito: Cálculo I')">Física I</div>
-    <div class="ramo" onclick="mostrarInfo('Inglés Técnico', 'Créditos: 3<br>Prerrequisito: Ninguno')">Inglés Técnico</div>
+  <!-- SEMESTRE 1 -->
+  <div class="semestre">
+    <h2>Semestre 1</h2>
+    <div class="asignatura"><span class="nombre">Cálculo I</span> <span class="tipo">(FB)</span><br/><span class="prerrequisitos">Sin prerrequisitos</span></div>
+    <div class="asignatura"><span class="nombre">Álgebra</span> <span class="tipo">(FB)</span><br/><span class="prerrequisitos">Sin prerrequisitos</span></div>
+    <div class="asignatura"><span class="nombre">Química General y Orgánica</span> <span class="tipo">(FB)</span><br/><span class="prerrequisitos">Sin prerrequisitos</span></div>
+    <div class="asignatura"><span class="nombre">La Ingeniería Industrial</span> <span class="tipo">(FD)</span><br/><span class="prerrequisitos">Sin prerrequisitos</span></div>
+    <div class="asignatura"><span class="nombre">Comunicación Oral y Escrita I</span> <span class="tipo">(FF)</span><br/><span class="prerrequisitos">Sin prerrequisitos</span></div>
+    <div class="asignatura"><span class="nombre">Idioma Extranjero I</span> <span class="tipo">(FF)</span><br/><span class="prerrequisitos">Sin prerrequisitos</span></div>
   </div>
 
-  <div class="overlay" onclick="cerrarModal()"></div>
-  <div class="modal" id="modal">
-    <h3 id="modalTitulo"></h3>
-    <p id="modalContenido"></p>
-    <button class="close-btn" onclick="cerrarModal()">Cerrar</button>
+  <!-- SEMESTRE 2 -->
+  <div class="semestre">
+    <h2>Semestre 2</h2>
+    <div class="asignatura"><span class="nombre">Cálculo II</span> <span class="tipo">(FB)</span><br/><span class="prerrequisitos">Cálculo I</span></div>
+    <div class="asignatura"><span class="nombre">Física I</span> <span class="tipo">(FB)</span><br/><span class="prerrequisitos">Cálculo I</span></div>
+    <div class="asignatura"><span class="nombre">Química Aplicada</span> <span class="tipo">(FD)</span><br/><span class="prerrequisitos">Química General y Orgánica</span></div>
+    <div class="asignatura"><span class="nombre">Computación</span> <span class="tipo">(FB)</span><br/><span class="prerrequisitos">Sin prerrequisitos</span></div>
+    <div class="asignatura"><span class="nombre">Comunicación Oral y Escrita II</span> <span class="tipo">(FF)</span><br/><span class="prerrequisitos">Comunicación Oral y Escrita I</span></div>
+    <div class="asignatura"><span class="nombre">Idioma Extranjero II</span> <span class="tipo">(FF)</span><br/><span class="prerrequisitos">Idioma Extranjero I</span></div>
   </div>
 
-  <script>
-    function mostrarInfo(titulo, contenido) {
-      document.getElementById('modalTitulo').innerHTML = titulo;
-      document.getElementById('modalContenido').innerHTML = contenido;
-      document.querySelector('.overlay').style.display = 'block';
-      document.querySelector('.modal').style.display = 'block';
-    }
+  <!-- SEMESTRE 3 al 11 -->
+  <!-- Puedes continuar agregando los semestres 3 a 11 en el mismo formato que los anteriores -->
 
-    function cerrarModal() {
-      document.querySelector('.overlay').style.display = 'none';
-      document.querySelector('.modal').style.display = 'none';
-    }
-  </script>
 </body>
 </html>
