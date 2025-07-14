@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Malla Interactiva</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff5fc;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    #malla-container {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 1rem;
+    }
+
+    .semestre {
+      background-color: #ffe3ed;
+      padding: 0.5rem;
+      border-radius: 12px;
+      width: 180px;
+      flex: 0 0 auto;
+    }
+
+    .semestre h3 {
+      text-align: center;
+      color: #a93164;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .ramo {
+      background-color: #f2d7e2;
+      margin: 0.3rem 0;
+      padding: 0.3rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .ramo:hover {
+      background-color: #e8bfd2;
+    }
+
+    .ramo.aprobado {
+      background-color: #c2f0c2;
+      text-decoration: line-through;
+      color: #444;
+    }
+
+    .ramo.bloqueado {
+      background-color: #eee;
+      color: #999;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+<h2 class="titulo">Malla Curricular Interactiva</h2>
+
+<div id="malla-container">
+  <div class="semestre">
+    <h3>Nivel 1</h3>
+    <div class="ramo" data-id="calculoi">CÁLCULO I</div>
+    <div class="ramo" data-id="algebra">ÁLGEBRA</div>
+    <div class="ramo" data-id="quimicageneralyorganica">QUÍMICA GENERAL Y ORGÁNICA</div>
+    <div class="ramo" data-id="laingenieriaindustrial">LA INGENIERÍA INDUSTRIAL</div>
+    <div class="ramo" data-id="comunicacionoralyescritai">COMUNICACIÓN ORAL Y ESCRITA I</div>
+    <div class="ramo" data-id="idiomaextranjeroi">IDIOMA EXTRANJERO I</div>
+  </div>
+
+  <div class="semestre">
+    <h3>Nivel 2</h3>
+    <div class="ramo bloqueado" data-id="calculoii" data-prerqs="calculoi">CÁLCULO II</div>
+    <div class="ramo bloqueado" data-id="algebralineal" data-prerqs="algebra">ÁLGEBRA LINEAL</div>
+    <div class="ramo" data-id="solucionalgoritmica">SOLUCIÓN ALGORÍTMICA DE PROBLEMAS</div>
+    <div class="ramo bloqueado" data-id="fundamentosadm" data-prerqs="laingenieriaindustrial">FUNDAMENTOS DE ADMINISTRACIÓN</div>
+    <div class="ramo bloqueado" data-id="comunicacionoralyescritaii" data-prerqs="comunicacionoralyescritai">COMUNICACIÓN ORAL Y ESCRITA II</div>
+    <div class="ramo bloqueado" data-id="idiomaextranjeroii" data-prerqs="idiomaextranjeroi">IDIOMA EXTRANJERO II</div>
+    <div class="ramo" data-id="deportei">DEPORTE I</div>
+  </div>
+</div>
+
+<script>
+  const ramos = document.querySelectorAll('.ramo');
+  let aprobados = new Set();
+
+  ramos.forEach(ramo => {
+    ramo.addEventListener('click', () => {
+      const id = ramo.dataset.id;
+
+      if (ramo.classList.contains('aprobado')) {
+        ramo.classList.remove('aprobado');
+        aprobados.delete(id);
+      } else {
+        ramo.classList.add('aprobado');
+        aprobados.add(id);
+      }
+
+      actualizarBloqueos();
+    });
+  });
+
+  function actualizarBloqueos() {
+    ramos.forEach(ramo => {
+      const id = ramo.dataset.id;
+      const prerqs = ramo.dataset.prerqs ? ramo.dataset.prerqs.split(',') : [];
+
+      if (aprobados.has(id)) return;
+
+      const puedeTomar = prerqs.every(p => aprobados.has(p));
+
+      if (prerqs.length > 0 && !puedeTomar) {
+        ramo.classList.add('bloqueado');
+      } else {
+        ramo.classList.remove('bloqueado');
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
