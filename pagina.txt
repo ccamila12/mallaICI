@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Malla Curricular Interactiva</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .malla {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .ramo {
+      background-color: #ffffff;
+      border: 2px solid #0077b6;
+      border-radius: 10px;
+      padding: 15px;
+      cursor: pointer;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .ramo:hover {
+      transform: scale(1.05);
+      background-color: #caf0f8;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 20px;
+      border: 2px solid #0077b6;
+      border-radius: 10px;
+      z-index: 1000;
+      width: 300px;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+
+    .close-btn {
+      background-color: #0077b6;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Malla Curricular - Ejemplo Ingeniería</h1>
+
+  <div class="malla">
+    <div class="ramo" onclick="mostrarInfo('Cálculo I', 'Créditos: 6<br>Prerrequisito: Ninguno')">Cálculo I</div>
+    <div class="ramo" onclick="mostrarInfo('Álgebra', 'Créditos: 5<br>Prerrequisito: Ninguno')">Álgebra</div>
+    <div class="ramo" onclick="mostrarInfo('Programación', 'Créditos: 5<br>Prerrequisito: Ninguno')">Programación</div>
+    <div class="ramo" onclick="mostrarInfo('Física I', 'Créditos: 6<br>Prerrequisito: Cálculo I')">Física I</div>
+    <div class="ramo" onclick="mostrarInfo('Inglés Técnico', 'Créditos: 3<br>Prerrequisito: Ninguno')">Inglés Técnico</div>
+  </div>
+
+  <div class="overlay" onclick="cerrarModal()"></div>
+  <div class="modal" id="modal">
+    <h3 id="modalTitulo"></h3>
+    <p id="modalContenido"></p>
+    <button class="close-btn" onclick="cerrarModal()">Cerrar</button>
+  </div>
+
+  <script>
+    function mostrarInfo(titulo, contenido) {
+      document.getElementById('modalTitulo').innerHTML = titulo;
+      document.getElementById('modalContenido').innerHTML = contenido;
+      document.querySelector('.overlay').style.display = 'block';
+      document.querySelector('.modal').style.display = 'block';
+    }
+
+    function cerrarModal() {
+      document.querySelector('.overlay').style.display = 'none';
+      document.querySelector('.modal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
