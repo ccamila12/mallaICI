@@ -3,38 +3,39 @@ body {
     background-color: #fff5fc;
     margin: 0;
     padding: 1rem;
-} 
+}
 
 .titulo {
     text-align: center;
     color: #d03d7f;
     margin-bottom: 1rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 #malla-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* No envolver líneas */
     gap: 0.5rem;
-    justify-content: center;
+    overflow-x: auto; /* Para permitir scroll horizontal si no caben */
+    justify-content: flex-start;
 }
 
 .semestre {
     background-color: #ffe3ed;
-    padding: 0.6rem;
+    padding: 0.5rem;
     border-radius: 12px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    min-width: 180px;
-    max-width: 180px;
-    flex: 1 1 180px;
-    font-size: 0.85rem;
+    width: 160px; /* Fijo y pequeño */
+    flex: 0 0 auto; /* No crecer ni encoger */
+    font-size: 0.8rem;
 }
 
 .semestre h3 {
     text-align: center;
     color: #a93164;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
 }
 
 .ramo {
@@ -44,7 +45,7 @@ body {
     border-radius: 10px;
     transition: 0.2s;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-align: center;
 }
 
