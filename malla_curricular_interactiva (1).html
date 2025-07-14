@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Malla Curricular Interactiva</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff5fc;
+    margin: 2rem;
+  }
+  h1 {
+    color: #d03d7f;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .nivel-container {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .nivel {
+    min-width: 220px;
+    flex: 0 0 auto;
+    background: #fefefe;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.5rem;
+  }
+  .nivel h2 {
+    text-align: center;
+    color: #a0537d;
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+  .ramo {
+    cursor: pointer;
+    margin: 0.3rem 0;
+    padding: 0.4rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  .ramo.FB { background-color: #f8c6d8; }
+  .ramo.FD { background-color: #e3b7e7; }
+  .ramo.FF { background-color: #d49dde; }
+  .ramo.FC { background-color: #d1c1d8; }
+  .ramo.MI { background-color: #bfa5c9; }
+  .ramo.DC { background-color: #c1b3d7; }
+  .ramo.EE { background-color: #d2addd; }
+  .ramo.tachado {
+    text-decoration: line-through;
+    background-color: rgba(208, 61, 127, 0.3) !important;
+    color: #7a4a6e !important;
+  }
+  .ramo.bloqueado {
+    background-color: #ccc !important;
+    color: #777 !important;
+    pointer-events: none;
+    user-select: none;
+  }
+  .ramo:hover:not(.bloqueado):not(.tachado) {
+    background-color: #f0d5e6;
+  }
+</style>
+</head>
+<body>
+<h1>Malla Curricular Interactiva</h1>
+<div class="nivel-container" id="malla-container">
+  <!-- Los niveles y ramos se llenarán con JS -->
+</div>
+<script>
+const ramos = [
+  { nivel: 1, nombre: "CALCULO I", tipo: "FB", prereq: "" },
+  { nivel: 1, nombre: "ALGEBRA", tipo: "FB", prereq: "" },
+  { nivel: 1, nombre: "QUIMICA GENERAL Y ORGANICA", tipo: "FB", prereq: "" },
+  { nivel: 1, nombre: "LA INGENIERIA INDUSTRIAL", tipo: "FD", prereq: "" },
+  { nivel: 1, nombre: "COMUNICACION ORAL Y ESCRITA I", tipo: "FF", prereq: "" },
+  { nivel: 1, nombre: "IDIOMA EXTRANJERO I", tipo: "FF", prereq: "" },
+  { nivel: 2, nombre: "CALCULO II", tipo: "FB", prereq: "CALCULO I" },
+  { nivel: 2, nombre: "ALGEBRA LINEAL", tipo: "FB", prereq: "ALGEBRA" },
+  { nivel: 2, nombre: "SOLUCION ALGORITMICA DE PROBLEMAS", tipo: "FD", prereq: "" },
+  { nivel: 2, nombre: "FUNDAMENTOS DE ADMINISTRACION", tipo: "FD", prereq: "LA INGENIERIA INDUSTRIAL" },
+  { nivel: 2, nombre: "COMUNICACION ORAL Y ESCRITA II", tipo: "FF", prereq: "COMUNICACION ORAL Y ESCRITA I" },
+  { nivel: 2, nombre: "IDIOMA EXTRANJERO II", tipo: "FF", prereq: "IDIOMA EXTRANJERO I" },
+  { nivel: 2, nombre: "DEPORTE I", tipo: "FC", prereq: "" },
+  // Agrega más ramos aquí si necesitas
+];
+
+const contenedor = document.getElementById("malla-container");
+const niveles = [...new Set(ramos.map(r => r.nivel))].sort((a,b) => a - b);
+niveles.forEach(nivel => {
+  const nivelDiv = document.createElement("div");
+  nivelDiv.className = "nivel";
+  nivelDiv.innerHTML = `<h2>Nivel ${nivel}</h2>`;
+  ramos.filter(r => r.nivel === nivel).forEach(r => {
+    const ramo = document.createElement("div");
+    ramo.className = `ramo ${r.tipo}`;
+    ramo.textContent = r.nombre;
+    ramo.dataset.nombre = r.nombre;
+    ramo.dataset.prerrequisito = r.prereq;
+    nivelDiv.appendChild(ramo);
+  });
+  contenedor.appendChild(nivelDiv);
+});
+
+function estaTachado(el) {
+  return el.classList.contains("tachado");
+}
+
+function guardarEstado() {
+  const tachados = Array.from(document.querySelectorAll(".ramo.tachado"))
+    .map(el => el.dataset.nombre);
+  localStorage.setItem("ramosTachados", JSON.stringify(tachados));
+}
+
+function cargarEstado() {
+  const tachados = JSON.parse(localStorage.getItem("ramosTachados") || "[]");
+  document.querySelectorAll(".ramo").forEach(el => {
+    if (tachados.includes(el.dataset.nombre)) {
+      el.classList.add("tachado");
+    }
+  });
+}
+
+function actualizarEstadoRamos() {
+  const aprobados = new Set(
+    Array.from(document.querySelectorAll(".ramo.tachado"))
+      .map(td => td.dataset.nombre.trim().toUpperCase())
+  );
+
+  document.querySelectorAll(".ramo").forEach(td => {
+    if (estaTachado(td)) {
+      td.classList.remove("bloqueado");
+      return;
+    }
+    const prereqs = td.dataset.prerrequisito;
+    if (!prereqs || prereqs.trim() === "") {
+      td.classList.remove("bloqueado");
+    } else {
+      const prereqArray = prereqs.split(",").map(x => x.trim().toUpperCase());
+      const todosAprobados = prereqArray.every(p => aprobados.has(p));
+      if (todosAprobados) {
+        td.classList.remove("bloqueado");
+      } else {
+        td.classList.add("bloqueado");
+        td.classList.remove("tachado");
+      }
+    }
+  });
+}
+
+document.querySelectorAll(".ramo").forEach(td => {
+  td.addEventListener("click", () => {
+    if (td.classList.contains("bloqueado")) return;
+    td.classList.toggle("tachado");
+    actualizarEstadoRamos();
+    guardarEstado();
+  });
+});
+
+cargarEstado();
+actualizarEstadoRamos();
+</script>
+</body>
+</html>
