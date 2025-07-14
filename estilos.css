@@ -47,3 +47,8 @@ body {
     background-color: #e8bfd2;
     transform: scale(1.02);
 }
+.ramo.completado {
+    text-decoration: line-through;
+    background-color: #d1c2d9;
+    color: #999;
+}
